@@ -1,46 +1,37 @@
 function fadeIn(element) {
 
-    let op = 0.1;  // initial opacity
-    element.style.display = 'block';
+    let op = 0.1  // initial opacity
+    element.style.display = 'block'
 
     let timer = setInterval(function () {
 
         if (op >= 1) {
-
-            clearInterval(timer);
-
+            clearInterval(timer)
         }
 
-        element.style.opacity = op;
-        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-        op += op * 0.1;
+        element.style.opacity = op
+        element.style.filter = 'alpha(opacity=' + op * 100 + ")"
+        op += op * 0.1
 
-    }, 10);
-
+    }, 10)
 }
 
 function fadeOut(element) {
 
     let op = 1;  // initial opacity
-    
     let timer = setInterval(function () {
 
         if (op <= 0.1) {
-
-            clearInterval(timer);
-            element.style.display = 'none';
-
+            clearInterval(timer)
+            element.style.display = 'none'
         }
 
-        element.style.opacity = op;
-        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-        op -= op * 0.1;
+        element.style.opacity = op
+        element.style.filter = 'alpha(opacity=' + op * 100 + ")"
+        op -= op * 0.1
 
-    }, 10);
-
+    }, 10)
 }
-
-
 
 
 
@@ -57,29 +48,20 @@ window.addEventListener('load', () => {
 
         btn.addEventListener('click', () => {
 
-            fadeOut(overlay);
+            fadeOut(overlay)
+
             forms.forEach((form) => {
-
-                fadeOut(form);
-
-            });
-            
-        });
-
-    });
+                fadeOut(form)
+            })
+        })
+    })
 
     loginBeacons.forEach((beacon) => {
 
         beacon.addEventListener('click', () => {
 
-            fadeIn(overlay);
-            fadeIn(loginForm);
-
-        });
-
-    });
-
-
-
-
-});
+            fadeIn(overlay)
+            fadeIn(loginForm)
+        })
+    })
+})

@@ -5,7 +5,6 @@ window.addEventListener('load', () => {
     equalHeight(titles)
     equalHeight(text)
 
-
 })
 
 
@@ -20,5 +19,4 @@ function equalHeight(el) {
     el.forEach(item => {
         item.style.height = max + 'px'
     })
-
 }
