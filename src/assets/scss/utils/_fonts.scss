@@ -1,0 +1,30 @@
+
+@mixin font($family, $filePath, $weight: normal, $style: normal) {
+
+    @font-face {
+
+        font-family: $family;
+        src: 
+            // url("#{$filePath}.woff") format("woff"),
+            // url("#{$filePath}.woff2") format("woff2"),
+            url("#{$filePath}.ttf") format("truetype");
+
+        font-weight: $weight;
+        font-style: $style;
+        font-display: swap;
+
+    }
+
+}
+
+
+
+@include font('Nunito Sans', '/fonts/NunitoSans/NunitoSans-Light', 300);
+@include font('Nunito Sans', '/fonts/NunitoSans/NunitoSans-Regular', 400);
+@include font('Nunito Sans', '/fonts/NunitoSans/NunitoSans-Italic', 400, italic);
+@include font('Nunito Sans', '/fonts/NunitoSans/NunitoSans-SemiBold', 600);
+@include font('Nunito Sans', '/fonts/NunitoSans/NunitoSans-Bold', 700);
+@include font('Nunito Sans', '/fonts/NunitoSans/NunitoSans-BoldItalic', 700, italic);
+
+@include font('Gilroy', '/fonts/Gilroy/Gilroy-Regular', 400);
+@include font('Gilroy', '/fonts/Gilroy/Gilroy-SemiBold', 600);

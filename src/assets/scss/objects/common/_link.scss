@@ -1,0 +1,148 @@
+.link {
+
+    font-weight: 400;
+    font-size: 16px;
+    line-height: calc(20/16);
+    text-decoration-line: underline;
+    color: #E2463C;
+
+    @include phone-big {
+        font-size: 14px;
+    }
+
+    &:hover,
+    &:focus {
+        color: var(--c-2-d)
+    }
+
+    &:active {
+        color: var(--c-2-dd);
+    }
+}
+
+.link-icon {
+    display: flex;
+    align-items: center;
+
+    &__icon {
+        display: block;
+        margin-right: 8px;
+    }
+}
+
+.link-badge {
+
+    display: inline-block;
+
+    padding: 6px 16px;
+
+    background: #2E8ADF;
+    border-radius: 15px;
+
+    font-family: var(--f-family-gilroy);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 14px;
+    color: #FFFFFF;
+
+    transition: cubic-bezier(0.165, 0.84, 0.44, 1) .3s all;
+
+    &.blue {
+        background: #2E8ADF;
+        color: #FFFFFF;
+
+        &:hover {
+            background: #1A63A7;
+        }
+    }
+
+    &.deepblue {
+        background: #174DDA;
+        color: #FFFFFF;
+
+        &:hover {
+            background: #1445c0;
+        }
+    }
+
+    &.green {
+        background: #41C345;
+        color: #FFFFFF;
+
+        &:hover {
+            background: #2C8B2F;
+        }
+    }
+
+    &.black {
+        background: #070707;
+        color: #FFFFFF;
+
+        &:hover {
+            background: #2D2D2D;
+        }
+    }
+
+    &.red {
+        background: #E04084;
+        color: #fff;
+
+        &:hover {
+            background: #cb3473;
+        }
+    }
+
+    &.white {
+        background: #FFFFFF;
+        color: #0D1238;
+
+        &:hover {
+            background: #141d5d;
+            color: #fff;
+        }
+    }
+
+    &.transparent {
+        background: transparent;
+        color: #0D1238;
+        border: 1px solid #0D1238;
+    }
+
+}
+
+.link-social-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 48px;
+    height: 48px;
+    border: 1px solid #000;
+    border-radius: 100%;
+
+    @include tablet {
+        width: 32px;
+        height: 32px;
+        padding: 8px;
+    }
+
+    &__img {
+        @include tablet {
+            width: 100%;
+        }
+    }
+    
+    &.vk {
+        border: 1px solid #4C75A3;
+    }
+    &.tg {
+        border: 1px solid #229ED9;
+    }
+    &.fb {
+        border: 1px solid #3B5998;
+    }
+    &.ig {
+        border: 1px solid #DE7F78;
+    }
+}
