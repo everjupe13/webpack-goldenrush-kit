@@ -6,11 +6,12 @@
 
     --section-padding-top: 60px;
     --section-padding-bottom: 60px;
-    
+
     @include laptop {
         --section-padding-top: 40px;
         --section-padding-bottom: 40px;
     }
+
     @include tablet {
         --section-padding-top: 40px;
         --section-padding-bottom: 40px;
@@ -28,26 +29,24 @@
     max-width: #{$xxl-container};
     margin: 0 auto;
     padding: 0 16px;
-    
+
     @include laptop-big {
         max-width: #{$xl-container}
     }
+
     @include laptop {
         max-width: #{$lg-container}
     }
+
     @include tablet {
         max-width: #{$md-container}
     }
+
     @include phone-big {
         max-width: #{$sm-container}
     }
+
     @include phone {
         max-width: #{$xs-container}
     }
-}
-
-.flex-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }

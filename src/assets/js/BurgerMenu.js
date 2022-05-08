@@ -11,6 +11,8 @@ class BurgerMenu {
         this.overflow.addEventListener('click', () => {
             this.close()
         })
+
+        this.bodyOffset()
     }
 
     close() {
@@ -33,6 +35,19 @@ class BurgerMenu {
         } else if (this.navbar.classList.contains('burger-active')) {
             this.close()
         }
+    }
+
+    bodyOffset() {
+        let header = document.querySelector('#header')
+        let h = header.getBoundingClientRect().height
+        document.body.style.setProperty('padding-top', `${h}px`)
+
+        window.addEventListener('resize', () => {
+            header.addEventListener('transitionend', () => {
+                h = header.getBoundingClientRect().height
+                document.body.style.setProperty('padding-top', `${h}px`)
+            })
+        })
     }
 }
 

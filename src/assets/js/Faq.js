@@ -13,7 +13,7 @@ window.addEventListener('load', () => {
             if (item.classList.contains('open')) {
                 item.children[1].style.height = `${heightBody}px`
             } else {
-                item.children[1].style.height = '0px';
+                item.children[1].style.height = '0px'
             }
 
         })

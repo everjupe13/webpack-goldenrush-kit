@@ -1,59 +1,31 @@
 .logo {
 
-    @include tablet {
-        max-width: 300px;
+    max-width: 105px;
+
+    @include laptop-big {
+        max-width: 90px;
+    }
+
+    @include phone-big {
+        max-width: 70px;
     }
 
     &__link {
         display: flex;
         align-items: center;
 
+        width: 100%;
+
         font-size: 1rem;
         line-height: 1;
     }
 
-    &__picture {
+    &__img {
         display: block;
 
-        width: 160px;
+        width: 100%;
         
         pointer-events: none;
         user-select: none;
-
-        @include laptop-big {
-            width: 140px;
-        }
-
-        @include laptop {
-            width: 125px;   
-        }
-    }
-
-    &__slogan {
-        max-width: 110px;
-        margin-left: 20px;
-
-        font-style: normal;
-        font-weight: 400;
-        font-size: 13px;
-        line-height: 120%;
-        color: #5A5A5A;
-
-        pointer-events: none;
-        user-select: none;
-
-        @include laptop-big {
-            max-width: 100px;
-            margin-left: 15px;
-            font-size: 12px;
-        }
-
-        @include laptop {
-            font-size: 9px;
-        }
-
-        &_alt {
-            color: #fff;
-        }
     }
 }

@@ -4,7 +4,7 @@
     font-weight: normal;
     font-size: 70px;
     line-height: calc(70/70);
-    color: #0D1238;
+    color: var(--f-c-1);
     text-transform: uppercase;
 
     @include laptop-big {
@@ -23,84 +23,11 @@
         font-size: 32px;
     }
 
-    &_sign {
-        font-style: italic;
-        font-size: inherit;
-        line-height: inherit;
-        color: var(--c-2);
-    }
-
-    &_newline {
-        display: block;
-        padding-left: 100px;
-
-        line-height: 1.2;
-
-        @include tablet {
-            padding-left: 40px;
-        }
-    }
-
     &_alt {
         color: #fff;
     }
-
-    &__ladder {
-
-        font-size: 50px;
-        line-height: 1.2;
-
-        @include laptop-big {
-            font-size: 44px;
-        }
-
-        @include laptop {
-            font-size: 30px;
-        }
-
-        @include tablet {
-            font-size: 29px;
-        }
-
-        .title__ladder-row {
-            display: block;
-
-            &:nth-of-type(2) {
-                padding-left: 90px;
-
-                @include laptop-big {
-                    padding-left: 70px;
-                }
-
-                @include laptop {
-                    padding-left: 50px;
-                }
-
-                @include tablet {
-                    padding-left: 0;
-                }
-            }
-
-            &:nth-of-type(3) {
-                padding-left: 215px;
-
-                font-style: italic;
-
-                @include laptop-big {
-                    padding-left: 180px;
-                }
-
-                @include laptop {
-                    padding-left: 100px;
-                }
-
-                @include tablet {
-                    padding-left: 40px;
-                }
-            }
-        }
-    }
 }
+
 
 .subtitle {
 
@@ -108,7 +35,7 @@
     font-weight: 400;
     font-size: 25px;
     line-height: calc(35/25);
-    color: #0D1238;
+    color: var(--f-c-1);
 
     @include laptop {
         font-size: 20px;
@@ -120,10 +47,5 @@
 
     @include phone-big {
         font-size: 18px;
-    }
-
-    .sign {
-        font-style: italic;
-        color: var(--c-2);
     }
 }
