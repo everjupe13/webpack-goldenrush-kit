@@ -102,7 +102,6 @@ module.exports = {
                     {
                         loader: 'postcss-loader',
                         options: {
-                            config: { path: `./postcss.config.js` },
                             sourceMap: true,
                         }
                     },
@@ -129,8 +128,6 @@ module.exports = {
                         loader: 'postcss-loader',
                         options: {
                             sourceMap: true,
-                            minify: false,
-                            config: { path: `./postcss.config.js` }
                         }
                     }
                 ]
