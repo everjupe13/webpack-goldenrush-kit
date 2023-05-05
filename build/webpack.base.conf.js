@@ -8,183 +8,198 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 // Main const
 const PATHS = {
-    src: path.join(__dirname, '../src'),
-    dist: path.join(__dirname, '../dist'),
-    assets: 'assets/'
+  src: path.join(__dirname, '../src'),
+  dist: path.join(__dirname, '../dist'),
+  assets: 'assets/'
 }
 
 // Pages const for HtmlWebpackPlugin
-const PAGES_DIR = PATHS.src  // for html
-// const PAGES = fs
-//     .readdirSync(PAGES_DIR)
-//     .filter(fileName => fileName.endsWith('.html')) // for html
-    // .filter(fileName => fileName.endsWith('.pug'))  // for pug
+const PAGES_DIR = PATHS.src
+const isProd = process.env.NODE_ENV === 'production'
+
+const PAGES = [
+  {
+    templateName: `${PAGES_DIR}/index.html`,
+    filenameName: './index.html',
+    minify: isProd ? true : false,
+    chunks: ['main']
+  }
+]
 
 module.exports = {
-    externals: {
-        paths: PATHS
-    },
-    entry: {
-        main: `${PATHS.src}/index.js`,
-        // name: `${PATHS.src}/name.js`,
-    },
-    output: {
-        filename: `${PATHS.assets}js/[name].[contenthash].js`,
-        path: PATHS.dist,
-        // publicPath: './' // for production (relative path about document)
-        publicPath: '/' // for development (absolute path from root server)
-    },
-    optimization: {
-        splitChunks: {
-            cacheGroups: {
-                vendor: {
-                    name: 'vendors',
-                    test: /node_modules/,
-                    chunks: 'all',
-                    enforce: true
-                }
-            }
-        },
-        minimize: true,
-    },
-    module: {
-        rules: [
-            {
-                // JavaScript
-                test: /\.js$/,
-                loader: 'babel-loader',
-                exclude: '/node_modules/'
-            },
-            {
-                // Vue
-                test: /\.vue$/,
-                loader: 'vue-loader',
-                options: {
-                    loader: {
-                        scss: 'vue-style-loader!css-loader!sass-loader'
-                    }
-                }
-            },
-            {
-                // Pug
-                test: /\.pug$/,
-                loader: 'pug-loader'
-            },
-            {
-                // Fonts
-                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'file-loader',
-                options: {
-                    name: '[name].[ext]'
-                }
-            },
-            {
-                // images / icons
-                test: /\.(png|jpg|gif|svg)$/,
-                loader: 'file-loader',
-                options: {
-                    name: '[name].[ext]'
-                }
-            },
-            {
-                // scss
-                test: /\.scss$/,
-                use: [
-                    'style-loader',
-                    MiniCssExtractPlugin.loader,
-                    {
-                        loader: 'css-loader',
-                        options: { 
-                            sourceMap: true, 
-                            url: false
-                        }
-                    },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            sourceMap: true,
-                        }
-                    },
-                    {
-                        loader: 'sass-loader',
-                        options: { 
-                            sourceMap: true
-                        }
-                    }
-                ]
-            },
-            {
-                // css
-                test: /\.css$/,
-                use: [
-                    'style-loader',
-                    MiniCssExtractPlugin.loader,
-                    {
-                        loader: 'css-loader',
-                        options: { sourceMap: true, url: false }
-                    },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            sourceMap: true,
-                        }
-                    }
-                ]
-            }
-        ]
-    },
-    resolve: {
-        alias: {
-            '~': PATHS.src, // Example: import Dog from "~/assets/img/dog.jpg"
-            '@': `${PATHS.src}/js`, // Example: import Sort from "@/utils/sort.js"
-            vue$: 'vue/dist/vue.js'
+  externals: {
+    paths: PATHS
+  },
+  entry: {
+    main: `${PATHS.src}/index.js`,
+  },
+  output: {
+    filename: `${PATHS.assets}js/[name].[contenthash].js`,
+    path: PATHS.dist,
+    publicPath: isProd ? './' : '/'
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          name: 'vendors',
+          test: /node_modules/,
+          chunks: 'all',
+          enforce: true
         }
+      }
     },
-    plugins: [
-        new CleanWebpackPlugin(),
-        // Vue loader
-        new VueLoaderPlugin(),
-        new MiniCssExtractPlugin({
-            filename: `${PATHS.assets}css/[name].[contenthash].css`,
-        }),
-        new CopyWebpackPlugin({
-            patterns: [
-                // Images:
-                {
-                    from: `${PATHS.src}/${PATHS.assets}img`,
-                    to: `${PATHS.assets}img`,
-                    noErrorOnMissing: true,
-                },
-                // Fonts:
-                {
-                    from: `${PATHS.src}/${PATHS.assets}fonts`,
-                    to: `${PATHS.assets}fonts`,
-                    noErrorOnMissing: true,
-                },
-                // Static (copy to '/'):
-                {
-                    from: `${PATHS.src}/static`,
-                    to: ''
-                }
-            ]
-        }),
-        new HtmlWebpackPlugin({
-            template: `${PAGES_DIR}/index.html`,
-            filename: './index.html',
-            minify: {
-                collapseWhitespace: false,
-                removeComments: true,
+    minimize: true,
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: '/node_modules/'
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: {
+          loader: {
+            scss: 'vue-style-loader!css-loader!sass-loader'
+          }
+        }
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]'
+        }
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]'
+        }
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+              url: false
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  ['postcss-url', {
+                    url: 'inline',
+                    basePath: `${PATHS.src}/assets/img`
+                  }]
+                ],
+              },
+              sourceMap: true,
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true
+            }
+          }
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              esModule: false,
             },
-            chunks: ['main'],
-        }),
-        // new HtmlWebpackPlugin({
-        //     template: `${PAGES_DIR}/name.html`,
-        //     filename: './name.html',
-        //     minify: {
-        //         collapseWhitespace: true,
-        //         removeComments: true,
-        //     },
-        //     chunks: ['main', 'name'],
-        // }),
+          },
+          {
+            loader: 'css-loader',
+            options: { sourceMap: true, url: false }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  ['postcss-url', {
+                    url: 'inline',
+                    basePath: `${PATHS.src}/assets/img`
+                  }]
+                ],
+              },
+              sourceMap: true,
+            }
+          }
+        ]
+      }
     ]
+  },
+  resolve: {
+    alias: {
+      '~': PATHS.src,
+      '@': `${PATHS.src}/js`,
+      vue$: 'vue/dist/vue.js'
+    }
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new VueLoaderPlugin(),
+    new MiniCssExtractPlugin({
+      filename: `${PATHS.assets}css/[name].[contenthash].css`,
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: `${PATHS.src}/${PATHS.assets}img`,
+          to: `${PATHS.assets}img`,
+          noErrorOnMissing: true,
+        },
+        {
+          from: `${PATHS.src}/${PATHS.assets}fonts`,
+          to: `${PATHS.assets}fonts`,
+          noErrorOnMissing: true,
+        },
+        {
+          from: `${PATHS.src}/static`,
+          to: ''
+        }
+      ]
+    }),
+    ...PAGES.map(p => {
+      const baseOptions = {
+        filename: `./${p.name}`,
+        ...(p && {
+          minify: {
+            collapseWhitespace: false,
+            removeComments: true,
+          }
+        }),
+        inject: 'head',
+        chunks: p.chunks
+      }
+
+      const templateOptions = {
+        filename: p.filenameName,
+        template: p.templateName,
+        chunks: p.chunks
+      }
+
+      return new HtmlWebpackPlugin({
+        ...baseOptions,
+        ...templateOptions
+      })
+    })
+  ]
 }
