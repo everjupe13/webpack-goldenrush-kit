@@ -126,15 +126,15 @@
 
 
 // Base Montserrat
-@include font('Montserrat', '/fonts/Montserrat/Montserrat-Thin', 100);
-@include font('Montserrat', '/fonts/Montserrat/Montserrat-ExtraLight', 200);
-@include font('Montserrat', '/fonts/Montserrat/Montserrat-Light', 300);
-@include font('Montserrat', '/fonts/Montserrat/Montserrat-Regular', normal);
-@include font('Montserrat', '/fonts/Montserrat/Montserrat-Medium', 500);
-@include font('Montserrat', '/fonts/Montserrat/Montserrat-SemiBold', 600);
-@include font('Montserrat', '/fonts/Montserrat/Montserrat-Bold', bold);
-@include font('Montserrat', '/fonts/Montserrat/Montserrat-ExtraBold', 800);
-@include font('Montserrat', '/fonts/Montserrat/Montserrat-Black', 900);
+@include font('Montserrat', '../../fonts/Montserrat/Montserrat-Thin', 100);
+@include font('Montserrat', '../../fonts/Montserrat/Montserrat-ExtraLight', 200);
+@include font('Montserrat', '../../fonts/Montserrat/Montserrat-Light', 300);
+@include font('Montserrat', '../../fonts/Montserrat/Montserrat-Regular', normal);
+@include font('Montserrat', '../../fonts/Montserrat/Montserrat-Medium', 500);
+@include font('Montserrat', '../../fonts/Montserrat/Montserrat-SemiBold', 600);
+@include font('Montserrat', '../../fonts/Montserrat/Montserrat-Bold', bold);
+@include font('Montserrat', '../../fonts/Montserrat/Montserrat-ExtraBold', 800);
+@include font('Montserrat', '../../fonts/Montserrat/Montserrat-Black', 900);
 
 // Italic Montserrat
 // @include font('Montserrat', '/fonts/Montserrat/Montserrat-Thin', 100, italic);

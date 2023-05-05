@@ -2,9 +2,7 @@
 
 Перед началом работы сборки необходимо установить зависимости
 
-    npm i
-
-При это необходимы установленные Node.js и npm
+    yarn
 
 
 # Структура
@@ -16,42 +14,25 @@
 
 Режим разработки **development**
 
-    npm run dev
-
-также нужно поменять значение свойства **output.publicPath** в файле **build/webpack.base.conf.js** на '/'
+    yarn run dev
 
 ***
 
-Сборка для **production**
+Билд для **production**
 
-    npm run build
-
-также нужно поменять значение свойства **output.publicPath** в файле **build/webpack.base.conf.js** на './'
+    yarn run build
 
 
-
-# Минификация файлов
+#### IMPORTANT ⚠️
 
 ## HTML
 
-В файле **build/webpack.base.conf.js** в плагине ***HtmlWebpackPlugin*** свойство **minify.collapseWhitespace** установить **true** для минификации, и наоборот
+Для картинок устанавливать относительные пути **scr="./assets/img/.."**
 
+## SCSS
 
-## CSS
-
-В файле **build/webpack.base.conf.js** в лоадере ***sass-loader*** свойство **options.outputStyle** установить **compressed** для минификации, и **uncompressed** что бы ее отключить. Так же в конфиге ***PostCSS*** (**postcss.config.js**) включить модуль **cssnano** для минификации и наоборот
-
-#### Возможные ошибки
-
-Если при сборке выходит ошибка об отсутствии свойства **options.outputStyle**, то необходимо откатить версию ***sass-loader*** до 7.1.0
-
-команды
-
-    npm uninstall --save-dev sass-loader
-    npm install --save-dev sass-loader@7.1.0
-
+Для всех путей в scss свойствах использовать относительные пути именно для самого файла, где оно прописано
 
 ## JS
 
-В файле **build/webpack.base.conf.js** в свойство **optimization.minimize** установить **true** для минификации, и наоборот.
-
+В **build/webpack.base.conf.js** свойство **optimization.minimize** отвечает за минификацию

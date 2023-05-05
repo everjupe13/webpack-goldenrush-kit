@@ -1,4 +1,4 @@
-const webpack = require('webpack')
+const Webpack = require('webpack')
 
 const { merge } = require('webpack-merge')
 
@@ -12,7 +12,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     // contentBase: baseWebpackConfig.externals.paths.dist,
     port: 8081,
     host: '0.0.0.0',
-    hot: true,
+    hot: false,
+    liveReload: true,
     https: false,
     client: {
       progress: true,
@@ -23,7 +24,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     }
   },
   plugins: [
-    new webpack.SourceMapDevToolPlugin({
+    new Webpack.SourceMapDevToolPlugin({
       filename: '[file].map'
     })
   ]

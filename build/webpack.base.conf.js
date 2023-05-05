@@ -49,7 +49,8 @@ module.exports = {
         }
       }
     },
-    minimize: true,
+    minimize: true, // minify js files
+    // runtimeChunk: "single",
   },
   module: {
     rules: [
@@ -78,7 +79,10 @@ module.exports = {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {
-          name: '[name].[ext]'
+          name: '[name].[ext]',
+          options: {
+            name: '[name].[ext]',
+          }
         }
       },
       {
@@ -93,19 +97,27 @@ module.exports = {
             }
           },
           {
+            // for scss path rewriting
+            // https://github.com/bholloway/resolve-url-loader 
+            // https://github.com/bholloway/resolve-url-loader/blob/v5/packages/resolve-url-loader/README.md
+            loader: 'resolve-url-loader',
+          },
+          {
             loader: 'postcss-loader',
             options: {
-              postcssOptions: {
-                plugins: [
-                  ['postcss-url', {
-                    url: 'inline',
-                    basePath: `${PATHS.src}/assets/img`
-                  }]
-                ],
-              },
+              // postcssOptions: {
+              //   plugins: [
+              //     ['postcss-url', {
+              //       url: 'inline',
+              //       filter: /\.(png|jpg|gif|svg)$/,
+              //       basePath: `${PATHS.src}/assets/img`
+              //     }]
+              //   ],
+              // },
               sourceMap: true,
             }
           },
+
           {
             loader: 'sass-loader',
             options: {
@@ -186,7 +198,7 @@ module.exports = {
             removeComments: true,
           }
         }),
-        inject: 'head',
+        // inject: 'head',
         chunks: p.chunks
       }
 
