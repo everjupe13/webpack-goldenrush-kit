@@ -16,8 +16,6 @@
 
     yarn run dev
 
-***
-
 Билд для **production**
 
     yarn run build
